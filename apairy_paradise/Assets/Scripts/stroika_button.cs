@@ -39,22 +39,13 @@ public class StroikaButton : MonoBehaviour
             // Проверяем нажатие клавиши "P"
             if (Input.GetKeyDown(KeyCode.P))
             {
-                // Проверяем пересечение с другими объектами
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(worldPosition, 0.5f);
-                if (colliders.Length == 0 && GlobalVariables.energy_honey_balance >= 200)
-                {
-                    // Фиксируем префаб на месте
-                    isPlacingPrefab = false;
-                    // Уменьшаем баланс энергии меда
-                    GlobalVariables.energy_honey_balance -= 200;
-                    // Создаем новый экземпляр префаба для следующего размещения
-                    currentPrefabInstance = Instantiate(prefabs[selectedPrefabIndex]);
-                    isPlacingPrefab = true;
-                }
-                else
-                {
-                    Debug.Log("Невозможно разместить префаб: недостаточно энергии меда или пересечение с другими объектами.");
-                }
+                // Фиксируем префаб на месте
+                isPlacingPrefab = false;
+                // Уменьшаем баланс энергии меда
+                GlobalVariables.energy_honey_balance -= 200;
+                // Создаем новый экземпляр префаба для следующего размещения
+                currentPrefabInstance = Instantiate(prefabs[selectedPrefabIndex]);
+                isPlacingPrefab = true;
             }
         }
     }
@@ -100,6 +91,7 @@ public class StroikaButton : MonoBehaviour
         }
     }
 }
+
 public class PrefabBuilder : MonoBehaviour
 {
     public GameObject prefab1;
